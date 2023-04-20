@@ -1,37 +1,18 @@
 import React from 'react';
 import "./App.css"
+import Technologies from "./Technologies";
+import Header from "./Header";
+import Footer from "./Footer";
 
 const App = () => {
     return (
         <div>
-            <Header />
-            < Technologies />
-
+            <Header/>
+            < Technologies/>
+            <Footer/>
         </div>
     );
 
-}
-
-const Technologies =() => {
-    return (
-        <div className="App">
-            <ul>
-                <li>css</li>
-                <li>html</li>
-                <li>js</li>
-                <li>react</li>
-            </ul>
-        </div>
-    )
-}
-const Header = () => {
-    return (
-        <div>
-        <a>Home</a>
-        <a>News Feed</a>
-        <a>Messages</a>
-        </div>
-    );
 }
 
 
