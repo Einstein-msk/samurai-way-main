@@ -1,15 +1,20 @@
 import React from 'react';
-import "./App.css"
-import Technologies from "./Technologies";
-import Header from "./Header";
-import Footer from "./Footer";
+import "./App.css";
+import {BrowserRouter} from "react-router-dom";
+import Header from "./components/Header";
+import Nav from "./components/Nav";
+import Profile from "./components/Profile";
+
+
 
 const App = () => {
     return (
-        <div>
+        <div className="app-wrapper">
             <Header/>
-            <Technologies/>
-            <Footer/>
+            <Nav/>
+            <Profile />
+
+
         </div>
     );
 
