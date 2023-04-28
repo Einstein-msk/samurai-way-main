@@ -21,21 +21,8 @@
 }
 
 
-.header {
-  grid-area: h;
-  background-color: cyan;
-}
-.header img {
-  width: 40px;
-}
 
-.nav {
-  grid-area: n;
-  background-color: aquamarine;
-}
 
-.content {
-  grid-area: c;
-  background-color: brown;
-}
+
+
 

@@ -1,23 +1,26 @@
 import React from 'react';
-
+import   './Nav.module.css';
+import s from './Nav.module.css' // css модуль описан в уроке 14. (вместо s можно использовать любое название). В Nav.css добавлено слово module для того чтобы классы применялись именно из этого файла.
+console.log(s) //посмотреть в консоли обьект s
 const Nav = () => {
+
     return (
 
-            <nav className="nav">
-                <div>
-                    <a href="">Profile</a>
+            <nav className={s.nav}>
+                <div className={s.item}>
+                    <a>Profile</a>
                 </div>
-                <div>
-                    <a href="">Messages</a>
+                <div className={`${s.item} ${s.active}`}>   {/*дополнительное свойство класса*/}
+                    <a>Messages</a>
                 </div>
-                <div>
-                    <a href="">News</a>
+                <div className={s.item}>
+                    <a>News</a>
                 </div>
-                <div>
-                    <a href="">Music</a>
+                <div className={s.item}>
+                    <a>Music</a>
                 </div>
-                <div>
-                    <a href="">Settings</a>
+                <div className={s.item}>
+                    <a>Settings</a>
                 </div>
             </nav>
 
