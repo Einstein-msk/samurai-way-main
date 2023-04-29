@@ -3,6 +3,7 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
 
+
 const MyPosts = () => {
     return (
 
@@ -13,10 +14,11 @@ const MyPosts = () => {
                 <button>Add post</button>
                 <button>Remove post</button>
             </div>
-            <Post />
-            <Post />
-            <Post />
-            <Post />
+            <Post post={"Hey how are you?"}/>
+            <Post post={"Now I'm on Seychelles"}/>
+            <Post post={"F...ck!!! I forgot to by my Whiskas "}/>
+            <Post post={"The weather is fantastic!!!"}/>
+
         </div>
 
     );
