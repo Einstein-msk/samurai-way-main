@@ -5,19 +5,19 @@ import Post from "./Posts/Post";
 
 
 const MyPosts = () => {
+
     return (
 
-           <div>
-               My posts
+        <div>
+            My posts
             <div>
                 <textarea placeholder="write your post, bro!"></textarea>
                 <button>Add post</button>
-                <button>Remove post</button>
             </div>
-            <Post post={"Hey how are you?"}/>
-            <Post post={"Now I'm on Seychelles"}/>
-            <Post post={"F...ck!!! I forgot to by my Whiskas "}/>
-            <Post post={"The weather is fantastic!!!"}/>
+            <Post post={"Hey how are you?"} likeCount={15}/>
+            <Post post={"Now I'm on Seychelles"} likeCount={35}/>
+            <Post post={"F...ck!!! I forgot to by my Whiskas "} likeCount={28}/>
+            <Post post={"The weather is fantastic!!!"} likeCount={12}/>
 
         </div>
 

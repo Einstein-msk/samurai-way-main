@@ -4,9 +4,9 @@
 }
 
 .item {
-    color: white;
+    color: #ac0fd9;
 }
 
 .item.active {   /*у класса есть дополнительное свойство*/
-    color: darkmagenta;
+    color: #3bde18;
 }
