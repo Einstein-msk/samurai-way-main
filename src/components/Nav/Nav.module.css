@@ -1,12 +1,15 @@
 .nav {
     grid-area: n;
-    background-color: aquamarine;
+    background-color:  indigo;
+    padding: 20px
+;
 }
 
-.item {
-    color: #ac0fd9;
+.item a{
+    color: whitesmoke;
+    text-decoration: none;
 }
 
-.item.active {   /*у класса есть дополнительное свойство*/
-    color: #3bde18;
+.item a.activeLink{   /*у класса есть дополнительное свойство*/
+    color: gold;
 }

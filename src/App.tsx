@@ -5,6 +5,9 @@ import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
 import {BrowserRouter, Route} from "react-router-dom";
+import News from "./components/Dialogs/News/News";
+import Music from "./components/Music/Music";
+import Settings from "./components/Settings/Settings";
 
 
 const App = () => {
@@ -22,6 +25,9 @@ const App = () => {
                     или Profile*/}
                     <Route path="/dialogs" component={Dialogs}/>
                     <Route path="/profile" component={Profile}/>
+                    <Route path="/news" component={News}/>
+                    <Route path="/music" component={Music}/>
+                    <Route path="/settings" component={Settings}/>
                 </div>
             </div>
         </BrowserRouter>
