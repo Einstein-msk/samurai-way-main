@@ -23,8 +23,8 @@ const App = () => {
                     {/*сначала подключим компоненты Dialogs и Profile. Эти компоненты указаны в качестве значений атрибутов в компонентах Route.
                     Сама компонента Route импортируется из react-router-dom. Атрибут path компоненте Route показывает системе роутинга какой тег отрисовать Dialogs
                     или Profile*/}
-                    <Route path="/dialogs" component={Dialogs}/>
                     <Route path="/profile" component={Profile}/>
+                    <Route  exact path="/dialogs" component={Dialogs}/> {/* exact path нужен, чтобы компонента отображала только точный url в данном случае "/dialogs", если будет дополнительный путь например /dialogs/dialog7 то отображения не будет */}
                     <Route path="/news" component={News}/>
                     <Route path="/music" component={Music}/>
                     <Route path="/settings" component={Settings}/>

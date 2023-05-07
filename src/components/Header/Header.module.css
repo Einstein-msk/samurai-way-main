@@ -1,7 +1,7 @@
 .header {
     grid-area: h;
-    background-color: cyan;
+    background: conic-gradient(at 0% 100%, blue 30deg, yellow 60deg, red 75deg, white 85deg, green 90deg );
 }
-.header img {
-    width: 40px;
-}
+/*.header img {*/
+/*    */
+/*}*/
