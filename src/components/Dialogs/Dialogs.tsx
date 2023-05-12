@@ -3,11 +3,11 @@ import s from "./Dialogs.module.css"
 import {NavLink} from "react-router-dom";
 
 
-type DialogPropsType = {
+type DialogItemsPropsType = {
     name: string
-    id: string
+    id: number
 }
-const DialogItems = (props: DialogPropsType) => {
+const DialogItems = (props: DialogItemsPropsType) => {
     let path = "/dialogs/" + props.id; {/*создали переменную path чтобы использовать ее как путь в NavLink */}
     return (
         <div className={s.dialog}>
@@ -24,25 +24,53 @@ const Messages = (props: MessagesPropsType) => {
         <div className={s.dialog}>{props.message}</div>
     )
 }
+
+//типизация  ПЕРЕМЕННЫХ dialogData, messagesData, которые находятся внутри компоненты Dialogs
+type ArrayOfDialogsDataType =Array<DialogDataType>
+type DialogDataType = {
+    id: number
+    name:string
+};
+type ArrayOfMessageDataType = MessagesType[]
+type MessagesType={
+    id: number
+    message: string
+}
+
 const Dialogs = () => {
+    let dialogData: ArrayOfDialogsDataType = [
+        {id:1, name: "Zhenya"},
+        {id:2, name: "Bogdan"},
+        {id:3, name: "Egor"},
+        {id:4, name: "Sasha"},
+        {id:5, name: "Alexey"}
+    ]
+
+    let messagesData: ArrayOfMessageDataType = [
+        {id:1, message: "Hi!"},
+        {id:2, message: "How are you?"},
+        {id:3, message: "What are you doing today?"},
+        {id:4, message: "What are you doing today?"},
+        {id:5, message: "What are you doing today?"}
+    ]
     return (
         // делаеем страницу Messages. Она будет состоять из двух div. Первая будет - s.dialogs,  а вторая - s.messages.
         // Отобразим их в виде 2х колонок с помощью display: grid в Dialogs.module.css.
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                <DialogItems name="Zhenya" id="1"/>
-                <DialogItems name="Bogdan" id="2"/>
-                <DialogItems name="Egor" id="3"/>
-                <DialogItems name="Sasha" id="4"/>
-                <DialogItems name="Alexey" id="5"/>
+                <DialogItems name={dialogData[0].name} id={dialogData[0].id}/>
+                <DialogItems name={dialogData[1].name} id={dialogData[1].id}/>
+                <DialogItems name={dialogData[2].name} id={dialogData[2].id}/>
+                <DialogItems name={dialogData[3].name} id={dialogData[3].id}/>
+                <DialogItems name={dialogData[4].name} id={dialogData[4].id}/>
             </div>
 
             <div className={s.messages}>
-                <Messages message="Hi!"/>
-                <Messages message="How are you?"/>
-                <Messages message="What are you doing today?"/>
-                <Messages message="What are you doing today?"/>
-                <Messages message="What are you doing today?"/>
+                <Messages message={messagesData[0].message}/>
+                <Messages message={messagesData[1].message}/>
+                <Messages message={messagesData[2].message}/>
+                <Messages message={messagesData[3].message}/>
+                <Messages message={messagesData[4].message}/>
 
             </div>
 

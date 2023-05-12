@@ -2,8 +2,21 @@ import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
 
-
+type ArrOfPostData = PostDataType[]
+type PostDataType = {
+    id: number
+    post:string
+    likeCount: number
+}
 const MyPosts = () => {
+
+    let postData: ArrOfPostData = [
+        {id:1, post: "Hey how are you?!", likeCount: 17},
+        {id:2, post: "Now I'm on Seychelles!", likeCount: 35},
+        {id:3, post: "F...ck!!! I forgot to by my Whiskas!", likeCount: 60},
+        {id:4, post: "The weather is fantastic!!!!", likeCount: 34},
+
+    ]
 
     return (
 
@@ -20,10 +33,10 @@ const MyPosts = () => {
 
             </div>
             <div className={s.posts}>
-                <Post post={"Hey how are you?"} likeCount={15}/>
-                <Post post={"Now I'm on Seychelles"} likeCount={35}/>
-                <Post post={"F...ck!!! I forgot to by my Whiskas "} likeCount={28}/>
-                <Post post={"The weather is fantastic!!!"} likeCount={12}/>
+                <Post post={postData[0].post} likeCount={postData[0].likeCount}/>
+                <Post post={postData[1].post} likeCount={postData[1].likeCount}/>
+                <Post post={postData[2].post} likeCount={postData[2].likeCount}/>
+                <Post post={postData[3].post} likeCount={postData[3].likeCount}/>
             </div>
         </div>
 
