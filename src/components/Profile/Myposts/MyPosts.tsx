@@ -17,7 +17,7 @@ const MyPosts = () => {
         {id:4, post: "The weather is fantastic!!!!", likeCount: 34},
 
     ]
-
+    let mappedPostData=postData.map(p=><Post post={p.post} likeCount={p.likeCount}/>)
     return (
 
         <div className={s.postsBlock}>
@@ -33,10 +33,12 @@ const MyPosts = () => {
 
             </div>
             <div className={s.posts}>
-                <Post post={postData[0].post} likeCount={postData[0].likeCount}/>
-                <Post post={postData[1].post} likeCount={postData[1].likeCount}/>
-                <Post post={postData[2].post} likeCount={postData[2].likeCount}/>
-                <Post post={postData[3].post} likeCount={postData[3].likeCount}/>
+                {mappedPostData}
+                {/*Вместо захардкоженных компонент Post, теперь они отображаются с помощью переменной mappedPostData*/}
+                {/*<Post post={postData[0].post} likeCount={postData[0].likeCount}/>*/}
+                {/*<Post post={postData[1].post} likeCount={postData[1].likeCount}/>*/}
+                {/*<Post post={postData[2].post} likeCount={postData[2].likeCount}/>*/}
+                {/*<Post post={postData[3].post} likeCount={postData[3].likeCount}/>*/}
             </div>
         </div>
 
