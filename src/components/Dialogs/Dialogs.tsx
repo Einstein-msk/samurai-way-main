@@ -1,29 +1,8 @@
 import React from 'react';
 import s from "./Dialogs.module.css"
-import {NavLink} from "react-router-dom";
+import Message from "./Message/Message";
+import DialogItems from "./DialogItems/DialogsItems";
 
-
-type DialogItemsPropsType = {
-    name: string
-    id: number
-}
-const DialogItems = (props: DialogItemsPropsType) => {
-    let path = "/dialogs/" + props.id; {/*создали переменную path чтобы использовать ее как путь в NavLink */}
-    return (
-        <div className={s.dialog}>
-            <NavLink to={path}>{props.name}</NavLink> {/*Про NavLink можно прочитать в Nav.tsx файле*/}
-        </div>
-    )
-}
-
-type MessagesPropsType = {
-    message: string
-}
-const Messages = (props: MessagesPropsType) => {
-    return (
-        <div className={s.dialog}>{props.message}</div>
-    )
-}
 
 //типизация  ПЕРЕМЕННЫХ dialogData, messagesData, которые находятся внутри компоненты Dialogs
 type ArrayOfDialogsDataType =Array<DialogDataType>
@@ -55,7 +34,7 @@ const Dialogs = () => {
     ]
 
     let mappedDialogData = dialogData.map(d=><DialogItems name={d.name} id={d.id}/>)
-    let mappedMessagesData= messagesData.map(m=><Messages message={m.message}/>)
+    let mappedMessagesData= messagesData.map(m=><Message message={m.message}/>)
     return (
         // делаеем страницу Messages. Она будет состоять из двух div. Первая будет - s.dialogs,  а вторая - s.messages.
         // Отобразим их в виде 2х колонок с помощью display: grid в Dialogs.module.css.
