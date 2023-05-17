@@ -2,39 +2,17 @@ import React from 'react';
 import s from "./Dialogs.module.css"
 import Message from "./Message/Message";
 import DialogItems from "./DialogItems/DialogsItems";
+import {ArrayOfDialogsDataType, ArrayOfMessageDataType} from "../../index";
 
 
-//типизация  ПЕРЕМЕННЫХ dialogData, messagesData, которые находятся внутри компоненты Dialogs
-type ArrayOfDialogsDataType =Array<DialogDataType>
-type DialogDataType = {
-    id: number
-    name:string
-};
-type ArrayOfMessageDataType = MessagesType[]
-type MessagesType={
-    id: number
-    message: string
+
+export type  DialogsPropsType ={
+    appDialogData: ArrayOfDialogsDataType
+    appMessagesData: ArrayOfMessageDataType
 }
-
-const Dialogs = () => {
-    let dialogData: ArrayOfDialogsDataType = [
-        {id:1, name: "Zhenya"},
-        {id:2, name: "Bogdan"},
-        {id:3, name: "Egor"},
-        {id:4, name: "Sasha"},
-        {id:5, name: "Alexey"}
-    ]
-
-    let messagesData: ArrayOfMessageDataType = [
-        {id:1, message: "Hi!"},
-        {id:2, message: "How are you?"},
-        {id:3, message: "What are you doing today?"},
-        {id:4, message: "What are you doing today?"},
-        {id:5, message: "What are you doing today?"}
-    ]
-
-    let mappedDialogData = dialogData.map(d=><DialogItems name={d.name} id={d.id}/>)
-    let mappedMessagesData= messagesData.map(m=><Message message={m.message}/>)
+const Dialogs = (props: DialogsPropsType) => {
+    let mappedDialogData = props.appDialogData.map(d=><DialogItems name={d.name} id={d.id}/>)
+    let mappedMessagesData= props.appMessagesData.map(m=><Message message={m.message}/>)
     return (
         // делаеем страницу Messages. Она будет состоять из двух div. Первая будет - s.dialogs,  а вторая - s.messages.
         // Отобразим их в виде 2х колонок с помощью display: grid в Dialogs.module.css.

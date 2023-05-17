@@ -1,23 +1,16 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
+import {ArrOfPostData} from "../../../index";
 
-type ArrOfPostData = PostDataType[]
-type PostDataType = {
-    id: number
-    post:string
-    likeCount: number
+
+
+
+type MyPostsPropsType = {
+    postData:ArrOfPostData
 }
-const MyPosts = () => {
-
-    let postData: ArrOfPostData = [
-        {id:1, post: "Hey how are you?!", likeCount: 17},
-        {id:2, post: "Now I'm on Seychelles!", likeCount: 35},
-        {id:3, post: "F...ck!!! I forgot to by my Whiskas!", likeCount: 60},
-        {id:4, post: "The weather is fantastic!!!!", likeCount: 34},
-
-    ]
-    let mappedPostData=postData.map(p=><Post post={p.post} likeCount={p.likeCount}/>)
+const MyPosts = (props:MyPostsPropsType) => {
+    let mappedPostData=props.postData.map(p=><Post post={p.post} likeCount={p.likeCount}/>)
     return (
 
         <div className={s.postsBlock}>
