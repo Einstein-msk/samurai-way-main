@@ -2,17 +2,18 @@ import React from 'react';
 import s from "./Dialogs.module.css"
 import Message from "./Message/Message";
 import DialogItems from "./DialogItems/DialogsItems";
-import {ArrayOfDialogsDataType, ArrayOfMessageDataType} from "../../index";
+import {DialogDataType, MessagesType} from "../../Redux/state";
+
 
 
 
 export type  DialogsPropsType ={
-    appDialogData: ArrayOfDialogsDataType
-    appMessagesData: ArrayOfMessageDataType
+    dialogData: Array<DialogDataType>
+    messagesData: MessagesType[]
 }
 const Dialogs = (props: DialogsPropsType) => {
-    let mappedDialogData = props.appDialogData.map(d=><DialogItems name={d.name} id={d.id}/>)
-    let mappedMessagesData= props.appMessagesData.map(m=><Message message={m.message}/>)
+    let mappedDialogData = props.dialogData.map(d=><DialogItems name={d.name} id={d.id}/>)
+    let mappedMessagesData= props.messagesData.map(m=><Message message={m.message}/>)
     return (
         // делаеем страницу Messages. Она будет состоять из двух div. Первая будет - s.dialogs,  а вторая - s.messages.
         // Отобразим их в виде 2х колонок с помощью display: grid в Dialogs.module.css.

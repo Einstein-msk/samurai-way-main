@@ -3,7 +3,8 @@ import './Profile.module.css';
 import s from './Profile.module.css'
 import MyPosts from "./Myposts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {ArrOfPostData} from "../../index";
+import {PostDataType} from "../../Redux/state";
+
 
 // export type ArrOfPostData = PostDataType[]
 // export type PostDataType = {
@@ -13,7 +14,7 @@ import {ArrOfPostData} from "../../index";
 // }
 
 type ProfilePropsType = {
-    appPostData: ArrOfPostData
+    postData: PostDataType[]
 }
 const Profile = (props:ProfilePropsType) => {
     // let postData: ArrOfPostData = [
@@ -26,7 +27,7 @@ const Profile = (props:ProfilePropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts postData={props.appPostData}/>
+            <MyPosts postData={props.postData}/>
         </div>
 
     );

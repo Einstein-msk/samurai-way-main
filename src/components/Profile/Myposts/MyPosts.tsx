@@ -1,13 +1,14 @@
 import React from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
-import {ArrOfPostData} from "../../../index";
+import {PostDataType} from "../../../Redux/state";
+
 
 
 
 
 type MyPostsPropsType = {
-    postData:ArrOfPostData
+    postData:PostDataType[]
 }
 const MyPosts = (props:MyPostsPropsType) => {
     let mappedPostData=props.postData.map(p=><Post post={p.post} likeCount={p.likeCount}/>)
