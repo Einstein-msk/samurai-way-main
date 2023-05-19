@@ -13,3 +13,10 @@
 .item a.activeLink{   /*у класса есть дополнительное свойство*/
     color: gold;
 }
+
+
+.friendsBlock {
+    margin-top: 70px;
+    color:sandybrown;
+    font-size: 20px;
+}

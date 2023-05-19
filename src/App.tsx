@@ -15,9 +15,8 @@ type AppPropsType = {
 }
 const App = (props:AppPropsType) => {
     return (
-        // компонента BrowserRouter нужна для того чтобы использовать систему роутинга (компонента Route). Эта компонента BrowserRouter
-        // должна обрамлять всю JSX разметку в App. Сама компонента BrowserRouter импортируется из react-router-dom
-        <BrowserRouter>
+
+
             <div className="app-wrapper">
                 <Header/>
                 <Nav/>
@@ -33,7 +32,7 @@ const App = (props:AppPropsType) => {
                     <Route path="/settings" component={Settings}/>
                 </div>
             </div>
-        </BrowserRouter>
+
 
     );
 

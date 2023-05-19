@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
 import {PostDataType} from "../../../Redux/state";
@@ -12,17 +12,22 @@ type MyPostsPropsType = {
 }
 const MyPosts = (props:MyPostsPropsType) => {
     let mappedPostData=props.postData.map(p=><Post post={p.post} likeCount={p.likeCount}/>)
-    return (
 
+    let newPostElement:any= React.createRef()
+    const addPost =()=> {
+        let text = newPostElement.current.value
+        alert(text)
+    }
+    return (
         <div className={s.postsBlock}>
            <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea placeholder="write your post, bro!"></textarea>
+                    <textarea ref={newPostElement} ></textarea>
                 </div>
 
                 <div>
-                    <button>Add post</button>
+                    <button onClick={addPost}>Add post</button>
                 </div>
 
             </div>
