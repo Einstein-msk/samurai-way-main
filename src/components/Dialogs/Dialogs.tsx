@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useRef} from 'react';
 import s from "./Dialogs.module.css"
 import Message from "./Message/Message";
 import DialogItems from "./DialogItems/DialogsItems";
@@ -12,6 +12,12 @@ export type  DialogsPropsType ={
     messagesData: MessagesType[]
 }
 const Dialogs = (props: DialogsPropsType) => {
+    const newMessageElement= useRef<HTMLTextAreaElement>(null)
+    const addMessage = ()=> {
+        if (newMessageElement.current!==null) {
+            alert(newMessageElement.current.value)
+        }
+    }
     let mappedDialogData = props.dialogData.map(d=><DialogItems name={d.name} id={d.id}/>)
     let mappedMessagesData= props.messagesData.map(m=><Message message={m.message}/>)
     return (
@@ -30,6 +36,8 @@ const Dialogs = (props: DialogsPropsType) => {
 
             <div className={s.messages}>
                 {mappedMessagesData}
+                <textarea ref={newMessageElement}></textarea>
+                <button onClick={addMessage}>Add Message</button>
                 {/*Вместо захардкоженных компонент Messages, теперь они отображаются с помощью переменной mappedMessagesData */}
                 {/*<Messages message={messagesData[0].message}/>*/}
                 {/*<Messages message={messagesData[1].message}/>*/}
