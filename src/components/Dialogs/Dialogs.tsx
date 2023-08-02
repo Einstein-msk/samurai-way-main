@@ -2,24 +2,28 @@ import React, {useRef} from 'react';
 import s from "./Dialogs.module.css"
 import Message from "./Message/Message";
 import DialogItems from "./DialogItems/DialogsItems";
-import {DialogDataType, MessagesType} from "../../Redux/state";
+import {DialogDataType, messagesPageStateType, MessagesType} from "../../Redux/state";
+import {text} from "stream/consumers";
 
 
-
-
-export type  DialogsPropsType ={
-    dialogData: Array<DialogDataType>
-    messagesData: MessagesType[]
+export type  DialogsPropsType = {
+    messagesPageState:messagesPageStateType
+    updateNewMessageText:(newText:string)=>void
+    addMessage:()=>void
 }
 const Dialogs = (props: DialogsPropsType) => {
-    const newMessageElement= useRef<HTMLTextAreaElement>(null)
-    const addMessage = ()=> {
+    const newMessageElement = useRef<HTMLTextAreaElement>(null)
+    const addMessage = () => {
+       props.addMessage();
+    }
+    let mappedDialogData = props.messagesPageState.dialogData.map(d => <DialogItems name={d.name} id={d.id}/>)
+    let mappedMessagesData = props.messagesPageState.messagesData.map(m => <Message message={m.message}/>)
+    const onChangeHandlerTextArea = ()=> {
         if (newMessageElement.current!==null) {
-            alert(newMessageElement.current.value)
+            let text= newMessageElement.current.value
+            props.updateNewMessageText(text)
         }
     }
-    let mappedDialogData = props.dialogData.map(d=><DialogItems name={d.name} id={d.id}/>)
-    let mappedMessagesData= props.messagesData.map(m=><Message message={m.message}/>)
     return (
         // делаеем страницу Messages. Она будет состоять из двух div. Первая будет - s.dialogs,  а вторая - s.messages.
         // Отобразим их в виде 2х колонок с помощью display: grid в Dialogs.module.css.
@@ -36,7 +40,7 @@ const Dialogs = (props: DialogsPropsType) => {
 
             <div className={s.messages}>
                 {mappedMessagesData}
-                <textarea ref={newMessageElement}></textarea>
+                <textarea onChange={onChangeHandlerTextArea} value={props.messagesPageState.newMessageText} ref={newMessageElement}></textarea>
                 <button onClick={addMessage}>Add Message</button>
                 {/*Вместо захардкоженных компонент Messages, теперь они отображаются с помощью переменной mappedMessagesData */}
                 {/*<Messages message={messagesData[0].message}/>*/}

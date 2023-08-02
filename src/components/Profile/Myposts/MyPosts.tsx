@@ -1,29 +1,33 @@
-import React, {RefObject} from 'react';
+import React, {ChangeEvent, ChangeEventHandler, RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
 import {PostDataType} from "../../../Redux/state";
 
 
-
-
-
 type MyPostsPropsType = {
-    postData:PostDataType[]
+    postData: PostDataType[]
+    addPost: () => void
+    newPostText: string
+    updateNewPostText:(newText:string)=>void
 }
-const MyPosts = (props:MyPostsPropsType) => {
-    let mappedPostData=props.postData.map(p=><Post post={p.post} likeCount={p.likeCount}/>)
+const MyPosts = (props: MyPostsPropsType) => {
+    let mappedPostData = props.postData.map(p => <Post post={p.post} likeCount={p.likeCount}/>)
 
-    let newPostElement:any= React.createRef()
-    const addPost =()=> {
-        let text = newPostElement.current.value
-        alert(text)
+    let newPostElement: any = React.createRef()
+    const addPost = () => {
+        props.addPost();
+
+    }
+    const onPostChange = () => {
+        let text= newPostElement.current.value
+        props.updateNewPostText(text);
     }
     return (
         <div className={s.postsBlock}>
-           <h3>My posts</h3>
+            <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea ref={newPostElement} ></textarea>
+                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
                 </div>
 
                 <div>
