@@ -8,20 +8,21 @@ import {text} from "stream/consumers";
 
 export type  DialogsPropsType = {
     messagesPageState:messagesPageStateType
-    updateNewMessageText:(newText:string)=>void
-    addMessage:()=>void
+    // updateNewMessageText:(newText:string)=>void
+    // addMessage:()=>void
+    dispatch:any
 }
 const Dialogs = (props: DialogsPropsType) => {
     const newMessageElement = useRef<HTMLTextAreaElement>(null)
     const addMessage = () => {
-       props.addMessage();
+       props.dispatch({type:"ADD-MESSAGE"});
     }
     let mappedDialogData = props.messagesPageState.dialogData.map(d => <DialogItems name={d.name} id={d.id}/>)
     let mappedMessagesData = props.messagesPageState.messagesData.map(m => <Message message={m.message}/>)
     const onChangeHandlerTextArea = ()=> {
         if (newMessageElement.current!==null) {
             let text= newMessageElement.current.value
-            props.updateNewMessageText(text)
+            props.dispatch({type:"UPDATE-NEW-MESSAGE-TEXT", newText:text})
         }
     }
     return (

@@ -13,10 +13,11 @@ import {StateType} from "./Redux/state";
 
 type AppPropsType = {
     state: StateType
-    addPost: () => void
-    updateNewPostText: (newText: string) => void
-    updateNewMessageText: (newText: string) => void
-    addMessage:()=>void
+    // addPost: () => void
+    // updateNewPostText: (newText: string) => void
+    // updateNewMessageText: (newText: string) => void
+    // addMessage:()=>void
+    dispatch:any
 }
 const App = (props: AppPropsType) => {
     console.log("App rerendered")
@@ -30,10 +31,9 @@ const App = (props: AppPropsType) => {
                     Сама компонента Route импортируется из react-router-dom. Атрибут path компоненте Route показывает системе роутинга какой тег отрисовать Dialogs
                     или Profile*/}
                 <Route path="/profile"
-                       render={() => <Profile profilePageState={props.state.profilePageState} addPost={props.addPost}
-                                              updateNewPostText={props.updateNewPostText}/>}/>{/*при использовании Route мы должны использовать render, чтобы отрисовать компоненту если хотим передать в нее пропсы */}
+                       render={() => <Profile profilePageState={props.state.profilePageState} dispatch={props.dispatch}/>}/>{/*при использовании Route мы должны использовать render, чтобы отрисовать компоненту если хотим передать в нее пропсы */}
                 <Route exact path="/dialogs" render={() => <Dialogs messagesPageState={props.state.messagesPageState}
-                                                                    updateNewMessageText={props.updateNewMessageText} addMessage={props.addMessage}/>}/> {/* exact path нужен, чтобы компонента отображала только точный url в данном случае "/dialogs", если будет дополнительный путь например /dialogs/dialog7 то отображения не будет */}
+                                                                    dispatch={props.dispatch} />}/> {/* exact path нужен, чтобы компонента отображала только точный url в данном случае "/dialogs", если будет дополнительный путь например /dialogs/dialog7 то отображения не будет */}
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>

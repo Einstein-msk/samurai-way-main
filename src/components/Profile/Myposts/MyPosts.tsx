@@ -6,21 +6,32 @@ import {PostDataType} from "../../../Redux/state";
 
 type MyPostsPropsType = {
     postData: PostDataType[]
-    addPost: () => void
+    dispatch: any
     newPostText: string
-    updateNewPostText:(newText:string)=>void
+
 }
 const MyPosts = (props: MyPostsPropsType) => {
     let mappedPostData = props.postData.map(p => <Post post={p.post} likeCount={p.likeCount}/>)
 
-    let newPostElement: any = React.createRef()
+    let newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPost = () => {
-        props.addPost();
+        props.dispatch({type: "ADD-POST"});
 
     }
     const onPostChange = () => {
-        let text= newPostElement.current.value
-        props.updateNewPostText(text);
+       //проверяем здесь чтоб newPostElement.current не был null если не проверить typeScript, будет ругаться
+        // if (newPostElement.current!==null) {
+        //     let text= newPostElement.current.value
+        //     let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
+        //     props.dispatch(action);
+        // }
+        //
+        //2й вариант записи:
+        let text=newPostElement.current?.value; // знак вопроса то же самое вместо if
+        let action = {type: "UPDATE-NEW-POST-TEXT", newText: text}
+        props.dispatch(action)
+
+
     }
     return (
         <div className={s.postsBlock}>

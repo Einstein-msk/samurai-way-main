@@ -10,8 +10,7 @@ export let renderEntireTree= (state:StateType)=> {
         // компонента BrowserRouter нужна для того чтобы использовать систему роутинга (компонента Route). Эта компонента BrowserRouter
         // должна обрамлять всю JSX разметку в App. Сама компонента BrowserRouter импортируется из react-router-dom
         <BrowserRouter>
-            <App state={state} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)} //прочитать про bind в интернете
-                 updateNewMessageText={store.updateNewMessageText.bind(store)} addMessage={store.addMessage.bind(store)} />
+            <App state={state} dispatch={store.dispatch.bind(store)} />//прочитать про bind в интернете
         </BrowserRouter> ,
         document.getElementById('root')
     );
