@@ -1,4 +1,6 @@
-import {renderEntireTree} from "../render";
+let renderEntireTree=(arg:any)=> {
+    console.log("state changed")
+}
 
 export type profilePageStateType = {
     postData: PostDataType[]
@@ -90,6 +92,10 @@ export const addMessage = ()=> {
     state.messagesPageState.messagesData.push(newMessage);
     state.messagesPageState.newMessageText="";
     renderEntireTree(state);
+}
+
+export const subscribe= (observer:any)=> {
+renderEntireTree=observer;  //observer(переводится как наблюдатель) , pattern
 }
 export default state;
 
