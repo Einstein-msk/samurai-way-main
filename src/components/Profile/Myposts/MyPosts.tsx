@@ -1,7 +1,8 @@
 import React, {ChangeEvent, ChangeEventHandler, RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
-import {PostDataType} from "../../../Redux/state";
+import {addPostActionCreator, PostDataType, updateNewPostTextActionCreator} from "../../../Redux/state";
+
 
 
 type MyPostsPropsType = {
@@ -15,11 +16,11 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const addPost = () => {
-        props.dispatch({type: "ADD-POST"});
+        props.dispatch(addPostActionCreator());
 
     }
     const onPostChange = () => {
-       //проверяем здесь чтоб newPostElement.current не был null если не проверить typeScript, будет ругаться
+        //проверяем здесь чтоб newPostElement.current не был null если не проверить typeScript, будет ругаться
         // if (newPostElement.current!==null) {
         //     let text= newPostElement.current.value
         //     let action = {type: "UPDATE-NEW-POST-TEXT", newText: text};
@@ -27,8 +28,9 @@ const MyPosts = (props: MyPostsPropsType) => {
         // }
         //
         //2й вариант записи:
-        let text=newPostElement.current?.value; // знак вопроса то же самое вместо if
-        let action = {type: "UPDATE-NEW-POST-TEXT", newText: text}
+        let text = newPostElement.current?.value; // знак вопроса то же самое вместо if
+        // let action = {type: "UPDATE-NEW-POST-TEXT", newText: text}
+        let action = updateNewPostTextActionCreator(text)
         props.dispatch(action)
 
 

@@ -37,6 +37,9 @@ export type DialogDataType = {
     name: string
 };
 
+const ADD_POST = "ADD-POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
+
 let store = {
     //нижнее подчеркивание означает что ключ приватный (к нему можно обратиться, но это договоренность что напрямую нельзя считывать его значения)
     _state: {
@@ -104,6 +107,10 @@ let store = {
     }
 
 }
+
+export const addPostActionCreator = () => ({type: ADD_POST})
+export const updateNewPostTextActionCreator = (text:string| undefined) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
+
 export default store;
 // window.store=store
 
