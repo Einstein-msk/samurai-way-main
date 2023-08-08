@@ -1,3 +1,11 @@
+import profileReducer, {ActionType} from "./profile-reducer";
+import messagesReducer from "./messages-reducer";
+import sidebarReducer from "./sidebar-reducer";
+import {addPostActionCreator} from "./profile-reducer";
+import {updateNewPostTextActionCreator} from "./profile-reducer";
+import {updateNewMessageTextCreator} from "./messages-reducer";
+import {addMessageCreator} from "./messages-reducer";
+
 export type profilePageStateType = {
     postData: PostDataType[]
     newPostText: string
@@ -37,8 +45,6 @@ export type DialogDataType = {
     name: string
 };
 
-const ADD_POST = "ADD-POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE-NEW-POST-TEXT";
 
 let store = {
     //нижнее подчеркивание означает что ключ приватный (к нему можно обратиться, но это договоренность что напрямую нельзя считывать его значения)
@@ -68,7 +74,8 @@ let store = {
                 {id: 5, message: "What are you doing today?"}
             ],
             newMessageText: "Default message text"
-        }
+        },
+        sidebar: {}
 
     },
     // _callSubscriber становится методом, а не стрелочной функцией обьекта и у него меняется синтаксис убирается знак равно и стрелка
@@ -77,7 +84,6 @@ let store = {
     },
 
     getState() {
-        debugger
         return this._state
     },
     subscribe(observer: any) {
@@ -85,35 +91,16 @@ let store = {
     },
 
 
-    dispatch(action: any) { // action это обьект в котором будет указано что нужно совершить у этого обьекта должно быть св-во type {type: "ADD-POST"}
-        if (action.type === "ADD-POST") {
-            let newPost:PostDataType = {id: 5, post: this._state.profilePageState.newPostText, likeCount: 0};
-            this._state.profilePageState.postData.push(newPost);
-            this._state.profilePageState.newPostText = "";
-            this._callSubscriber(this._state)
-
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profilePageState.newPostText = action.newText;
-                this._callSubscriber(this._state);
-        } else if (action.type==="ADD-MESSAGE") {
-            let newMessage = {id: 6, message: this._state.messagesPageState.newMessageText};
-            this._state.messagesPageState.messagesData.push(newMessage);
-            this._state.messagesPageState.newMessageText = "";
-            this._callSubscriber(this._state);
-        } else if (action.type==="UPDATE-NEW-MESSAGE-TEXT") {
-            this._state.messagesPageState.newMessageText = action.newText;
-            this._callSubscriber(this._state);
-        }
+    dispatch(action: ActionType) { // action это обьект в котором будет указано что нужно совершить у этого обьекта должно быть св-во type {type: "ADD-POST"}
+        this._state.profilePageState = profileReducer(this._state.profilePageState, action);
+        this._state.messagesPageState = messagesReducer(this._state.messagesPageState, action);
+        this._state.sidebar = sidebarReducer(this._state.sidebar, action);
+        this._callSubscriber(this._state)
     }
-
 }
-
-export const addPostActionCreator = () => ({type: ADD_POST})
-export const updateNewPostTextActionCreator = (text:string| undefined) => ({type: UPDATE_NEW_POST_TEXT, newText: text})
-
 export default store;
 // window.store=store
-
+// reducer-это чистая функция которая принимает стейт, принимает action(обьект у которого есть, как минимум ключ type), action применяет к этому стейту и возвращает ноавый стейт
 
 
 
