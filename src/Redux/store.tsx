@@ -1,10 +1,7 @@
 import profileReducer, {ActionType} from "./profile-reducer";
 import messagesReducer from "./messages-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import {addPostActionCreator} from "./profile-reducer";
-import {updateNewPostTextActionCreator} from "./profile-reducer";
-import {updateNewMessageTextCreator} from "./messages-reducer";
-import {addMessageCreator} from "./messages-reducer";
+
 
 export type profilePageStateType = {
     postData: PostDataType[]
@@ -45,8 +42,22 @@ export type DialogDataType = {
     name: string
 };
 
+export type StoreType = {
+    _state: RootStateType
+    _callSubscriber: (arg:any)=>void
+    getState:()=>RootStateType
+    subscribe:(observer:()=>void)=>void
+    dispatch:(action:ActionType)=>void
 
-let store = {
+}
+export type RootStateType = {
+    profilePageState: profilePageStateType
+    messagesPageState: messagesPageStateType
+    sidebar:{}
+
+}
+
+let store: StoreType = {
     //нижнее подчеркивание означает что ключ приватный (к нему можно обратиться, но это договоренность что напрямую нельзя считывать его значения)
     _state: {
         profilePageState: {
@@ -87,7 +98,7 @@ let store = {
         return this._state
     },
     subscribe(observer: any) {
-        this._callSubscriber = observer;  //observer(переводится как наблюдатель) , pattern
+        this._callSubscriber = observer;  //observer(переводится как наблюдатель) , pattern. Метод subscribe забирает функцию rerenderEntireTree в своем параметре
     },
 
 
@@ -101,8 +112,6 @@ let store = {
 export default store;
 // window.store=store
 // reducer-это чистая функция которая принимает стейт, принимает action(обьект у которого есть, как минимум ключ type), action применяет к этому стейту и возвращает ноавый стейт
-
-
 
 
 

@@ -6,27 +6,22 @@ import {
     addMessageCreator,
     updateNewMessageTextCreator
 } from "../../Redux/messages-reducer";
-import {text} from "stream/consumers";
-import {messagesPageStateType} from "../../Redux/state";
+import {messagesPageStateType} from "../../Redux/store";
 
 
 export type  DialogsPropsType = {
-    messagesPageState: messagesPageStateType
-    // updateNewMessageText:(newText:string)=>void
-    // addMessage:()=>void
-    dispatch: any
+    addMessage:()=>void
+    updateNewMessageText:(text:string)=>void
+    messagesPageState:messagesPageStateType
 }
 const Dialogs = (props: DialogsPropsType) => {
     const newMessageElement = useRef<HTMLTextAreaElement>(null)
-    const addMessage = () => {
-        props.dispatch(addMessageCreator());
-    }
+    const addMessage = () => props.addMessage()
     let mappedDialogData = props.messagesPageState.dialogData.map(d => <DialogItems name={d.name} id={d.id}/>)
     let mappedMessagesData = props.messagesPageState.messagesData.map(m => <Message message={m.message}/>)
     const onChangeHandlerTextArea = (e:ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
-        // let text = newMessageElement.current?.value
-        props.dispatch(updateNewMessageTextCreator(text))
+       let text = e.currentTarget.value
+        props.updateNewMessageText(text)
 
     }
     return (

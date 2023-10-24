@@ -3,7 +3,8 @@ import './Profile.module.css';
 import s from './Profile.module.css'
 import MyPosts from "./Myposts/MyPosts";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
-import {PostDataType, profilePageStateType, StateType} from "../../Redux/state";
+import {PostDataType, profilePageStateType, StateType, StoreType} from "../../Redux/store";
+import MyPostsContainer from "./Myposts/MyPostsContainer";
 
 
 // export type ArrOfPostData = PostDataType[]
@@ -14,21 +15,18 @@ import {PostDataType, profilePageStateType, StateType} from "../../Redux/state";
 // }
 
 type ProfilePropsType = {
-    dispatch:any
+    // dispatch:any
     // addPost:()=>void
-    profilePageState: profilePageStateType
+    // profilePageState: profilePageStateType
     // updateNewPostText:(newText:string)=>void
+    store:any
 }
 const Profile = (props:ProfilePropsType) => {
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts postData={props.profilePageState.postData}
-                     newPostText={props.profilePageState.newPostText}
-                     dispatch={props.dispatch}
-
-            />
+            <MyPostsContainer store={props.store}/>
         </div>
 
     );

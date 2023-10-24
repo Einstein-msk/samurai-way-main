@@ -2,23 +2,23 @@ import React, {ChangeEvent, ChangeEventHandler, RefObject} from 'react';
 import s from './MyPosts.module.css'
 import Post from "./Posts/Post";
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../Redux/profile-reducer";
-import {PostDataType} from "../../../Redux/state";
+import {PostDataType} from "../../../Redux/store";
 
 
 
 type MyPostsPropsType = {
     postData: PostDataType[]
-    dispatch: any
+    addPost: ()=>void
     newPostText: string
+    updateNewPostText:(text:string|undefined)=>void
 
 }
 const MyPosts = (props: MyPostsPropsType) => {
     let mappedPostData = props.postData.map(p => <Post post={p.post} likeCount={p.likeCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
-    const addPost = () => {
-        props.dispatch(addPostActionCreator());
-
+    const onAddPost = () => {
+        props.addPost()
     }
     const onPostChange = () => {
         //проверяем здесь чтоб newPostElement.current не был null если не проверить typeScript, будет ругаться
@@ -30,11 +30,7 @@ const MyPosts = (props: MyPostsPropsType) => {
         //
         //2й вариант записи:
         let text = newPostElement.current?.value; // знак вопроса то же самое вместо if
-        // let action = {type: "UPDATE-NEW-POST-TEXT", newText: text}
-        let action = updateNewPostTextActionCreator(text)
-        props.dispatch(action)
-
-
+        props.updateNewPostText(text)
     }
     return (
         <div className={s.postsBlock}>
@@ -45,7 +41,7 @@ const MyPosts = (props: MyPostsPropsType) => {
                 </div>
 
                 <div>
-                    <button onClick={addPost}>Add post</button>
+                    <button onClick={onAddPost}>Add post</button>
                 </div>
 
             </div>

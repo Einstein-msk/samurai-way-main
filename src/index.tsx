@@ -2,19 +2,24 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 
-import store, {StateType} from "./Redux/state";
+import store from "./Redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
+import {RootStateType} from "./Redux/store";
 
-export let renderEntireTree= (state:StateType)=> {
+export let renderEntireTree= (state:RootStateType)=> {
     ReactDOM.render(
         // компонента BrowserRouter нужна для того чтобы использовать систему роутинга (компонента Route). Эта компонента BrowserRouter
         // должна обрамлять всю JSX разметку в App. Сама компонента BrowserRouter импортируется из react-router-dom
+        //прочитать про bind в интернете
         <BrowserRouter>
-            <App state={state} dispatch={store.dispatch.bind(store)} />//прочитать про bind в интернете
+            <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
         </BrowserRouter> ,
         document.getElementById('root')
     );
 }
 
 renderEntireTree(store.getState());
-store.subscribe(renderEntireTree);
+store.subscribe(()=>{
+    let state= store.getState();
+    renderEntireTree(state);
+});
