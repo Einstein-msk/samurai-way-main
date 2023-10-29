@@ -1,27 +1,31 @@
-import React, {ChangeEvent, useRef} from 'react';
-import s from "./Dialogs.module.css"
-import Message from "./Message/Message";
-import DialogItems from "./DialogItems/DialogsItems";
+import React from 'react';
 import {
     addMessageCreator,
     updateNewMessageTextCreator
 } from "../../Redux/messages-reducer";
-import {messagesPageStateType} from "../../Redux/store";
+
 import Dialogs from "./Dialogs";
+import StoreContext from "../../storeContext";
 
 
-export type  DialogsPropsType = {
-    store:any
-}
-const DialogsContainer = (props: DialogsPropsType) => {
-    let state = props.store.getState().messagesPageState
-    const addMessage = () => {
-        props.store.dispatch(addMessageCreator());
-    }
-    const onChangeHandlerTextArea = (text:string) => {
-        props.store.dispatch(updateNewMessageTextCreator(text))
-    }
-    return <Dialogs addMessage={addMessage} updateNewMessageText={onChangeHandlerTextArea} messagesPageState={state} />;
+
+const DialogsContainer = () => {
+
+    return <StoreContext.Consumer>
+        {
+            (store)=>{
+                let state = store.getState().messagesPageState
+                const addMessage = () => {
+                    store.dispatch(addMessageCreator());
+                }
+                const onChangeHandlerTextArea = (text:string) => {
+                   store.dispatch(updateNewMessageTextCreator(text))
+                }
+                return  <Dialogs addMessage={addMessage} updateNewMessageText={onChangeHandlerTextArea} messagesPageState={state} />
+            }
+        }
+
+    </StoreContext.Consumer>;
 };
 
 export default DialogsContainer;

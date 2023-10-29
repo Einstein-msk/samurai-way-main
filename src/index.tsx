@@ -5,6 +5,7 @@ import App from './App';
 import store from "./Redux/redux-store";
 import {BrowserRouter} from "react-router-dom";
 import {RootStateType} from "./Redux/store";
+import StoreContext, {Provider} from "./storeContext";
 
 export let renderEntireTree= (state:RootStateType)=> {
     ReactDOM.render(
@@ -12,7 +13,13 @@ export let renderEntireTree= (state:RootStateType)=> {
         // должна обрамлять всю JSX разметку в App. Сама компонента BrowserRouter импортируется из react-router-dom
         //прочитать про bind в интернете
         <BrowserRouter>
-            <App state={state} dispatch={store.dispatch.bind(store)} store={store} />
+            {/*<StoreContext.Provider value={store}>*/}
+            {/*    <App  />*/}
+            {/*</StoreContext.Provider>*/}
+            <Provider store={store}>
+                <App/>
+            </Provider>
+
         </BrowserRouter> ,
         document.getElementById('root')
     );

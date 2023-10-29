@@ -19,14 +19,14 @@ type ProfilePropsType = {
     // addPost:()=>void
     // profilePageState: profilePageStateType
     // updateNewPostText:(newText:string)=>void
-    store:any
+    // store:any
 }
 const Profile = (props:ProfilePropsType) => {
 
     return (
         <div>
             <ProfileInfo/>
-            <MyPostsContainer store={props.store}/>
+            <MyPostsContainer />
         </div>
 
     );

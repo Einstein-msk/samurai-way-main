@@ -16,13 +16,13 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 type AppPropsType = {
-    state: RootStateType
+    // state: RootStateType
     // addPost: () => void
     // updateNewPostText: (newText: string) => void
     // updateNewMessageText: (newText: string) => void
     // addMessage:()=>void
-    dispatch:(action:ActionType)=>void
-    store:any
+    // dispatch:(action:ActionType)=>void
+    // store:any
 }
 const App = (props: AppPropsType) => {
     console.log("App rerendered")
@@ -36,8 +36,8 @@ const App = (props: AppPropsType) => {
                     Сама компонента Route импортируется из react-router-dom. Атрибут path компоненте Route показывает системе роутинга какой тег отрисовать Dialogs
                     или Profile*/}
                 <Route path="/profile"
-                       render={() => <Profile store={props.store}/>}/>{/*при использовании Route мы должны использовать render, чтобы отрисовать компоненту если хотим передать в нее пропсы */}
-                <Route exact path="/dialogs" render={() => <DialogsContainer store={props.store}  />}/> {/* exact path нужен, чтобы компонента отображала только точный url в данном случае "/dialogs", если будет дополнительный путь например /dialogs/dialog7 то отображения не будет */}
+                       render={() => <Profile />}/>{/*при использовании Route мы должны использовать render, чтобы отрисовать компоненту если хотим передать в нее пропсы */}
+                <Route exact path="/dialogs" render={() => <DialogsContainer/>}/> {/* exact path нужен, чтобы компонента отображала только точный url в данном случае "/dialogs", если будет дополнительный путь например /dialogs/dialog7 то отображения не будет */}
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
