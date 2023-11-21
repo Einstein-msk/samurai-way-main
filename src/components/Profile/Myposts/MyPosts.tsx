@@ -14,7 +14,12 @@ type MyPostsPropsType = {
 
 }
 const MyPosts = (props: MyPostsPropsType) => {
-    let mappedPostData = props.postData.map(p => <Post post={p.post} likeCount={p.likeCount}/>)
+
+    console.log('props', props)
+
+
+
+    let mappedPostData = props.postData.map(p => <Post key={p.id} post={p.post} likeCount={p.likeCount}/>)
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     const onAddPost = () => {

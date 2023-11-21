@@ -1,5 +1,3 @@
-import {PostDataType, profilePageStateType} from "./store";
-
 // export type ActionType = ReturnType<typeof addPostActionCreator> | ReturnType<typeof updateNewPostTextActionCreator>
 export type ActionType = {
     type:string
@@ -21,16 +19,14 @@ let initialState = {
 }
 
 const profileReducer = (state: any = initialState, action: ActionType) => {
-
     switch (action.type) {
         case ADD_POST:
-            let newPost: PostDataType = {id: 5, post: state.newPostText, likeCount: 0};
-            state.postData.push(newPost);
-            state.newPostText = "";
-            break;
+            return {
+                ...state, postData: [...state.postData, {id: 5, post: state.newPostText, likeCount: 0}],
+                newPostText: ""
+            }
         case UPDATE_NEW_POST_TEXT:
-            state.newPostText = action.newText;
-            break;
+            return {...state, newPostText: action.newText}
     }
 
     return state
