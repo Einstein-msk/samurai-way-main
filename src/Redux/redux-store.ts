@@ -3,12 +3,14 @@ import {combineReducers, legacy_createStore as createStore} from "redux";
 import profileReducer from "./profile-reducer";
 import messagesReducer from "./messages-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import {usersReducer} from "./users-reducer";
 
 
 let reducers = combineReducers({ //функция combineReducers приходит из библиотеки redux и розволяет обьеденить в себе несколько редьюсеров
     profilePageState: profileReducer,
     messagesPageState: messagesReducer,
-    sidebar: sidebarReducer
+    sidebar: sidebarReducer,
+    usersPage: usersReducer
 });
 export type AppRootStateType=ReturnType<typeof store.getState>
 

@@ -3,14 +3,15 @@ import "./App.css";
 import Header from "./components/Header/Header";
 import Nav from "./components/Nav/Nav";
 import Profile from "./components/Profile/Profile";
-import Dialogs from "./components/Dialogs/Dialogs";
+
 import { Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {RootStateType, StoreType} from "./Redux/store";
-import {ActionType} from "./Redux/profile-reducer";
+
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 
@@ -37,7 +38,8 @@ const App = (props: AppPropsType) => {
                     или Profile*/}
                 <Route path="/profile"
                        render={() => <Profile />}/>{/*при использовании Route мы должны использовать render, чтобы отрисовать компоненту если хотим передать в нее пропсы */}
-                <Route exact path="/dialogs" render={() => <DialogsContainer/>}/> {/* exact path нужен, чтобы компонента отображала только точный url в данном случае "/dialogs", если будет дополнительный путь например /dialogs/dialog7 то отображения не будет */}
+                <Route exact path="/dialogs" render={() => <DialogsContainer/>}/>{/* exact path нужен, чтобы компонента отображала только точный url в данном случае "/dialogs", если будет дополнительный путь например /dialogs/dialog7 то отображения не будет */}
+                <Route exact path="/users" render={() => <UsersContainer/>}/>
                 <Route path="/news" component={News}/>
                 <Route path="/music" component={Music}/>
                 <Route path="/settings" component={Settings}/>
